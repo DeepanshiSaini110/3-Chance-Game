@@ -14,8 +14,8 @@ TECHNOLOGIES USED 💻:
 3. JAVASCRIPT: For generating random numbers and handling game logic.
 
 FEATURES 🧩: 
-🎲 Random number generation for each game.
-🧑🏻‍🤝‍🧑 Two-player mode.
-🔄️ 3 Chances for each player.
-🏆 Displays the winner or a draw result.
-🌈 Simple and responsive design.
+. 🎲 Random number generation for each game.
+. 🧑🏻‍🤝‍🧑 Two-player mode.
+. 🔄️ 3 Chances for each player.
+. 🏆 Displays the winner or a draw result.
+. 🌈 Simple and responsive design.
