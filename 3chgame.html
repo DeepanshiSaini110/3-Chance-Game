@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- BOOTSTRAP CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- CLOSE CDN -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: rgb(250, 240, 222);
+        }
+        h1{
+            background-color: rgb(88, 4, 70);
+            color: rgb(245, 202, 245);
+            text-align: center;
+            font-family:Georgia, 'Times New Roman', Times, serif;
+            font-weight: bold;
+            font-size: 28px;
+        }
+        .hero{
+            background-color: rgb(194, 247, 194);
+            color: rgb(1, 94, 1);
+            font-size: 20px;
+            font-family: serif;
+            text-align: center;
+           font-weight: bold;
+        }
+        h2{
+            color: rgb(145, 2, 2);
+            text-align: center;
+            font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            font-size: 20px;
+            font-style: italic;  
+        }
+        h3{
+            text-align: center;
+            font-family:serif;
+            font-weight: bold;
+        }
+        .container{
+            display:flex;
+        }
+        .container .first{
+            width: 50%;
+            float: left;
+        }
+        .container .second{
+            width: 50%;
+            float: right;
+        }
+        p{
+            font-size: 20px;
+            font-family: 'Times New Roman', Times, serif;
+            color: rgb(19, 1, 174);
+        }
+    </style>
+</head>
+<body>
+    <br>
+    <h1>THREE CHANCE GAME</h1>
+    <br>
+    <marquee class="hero" behavior="scroll 30%" direction="right">Game Started !!</marquee>
+    <br><br>
+    <h2>Every Player Gets 3 Chance Absolutely Fair</h2>
+    <br>
+    <div class="container mt-4">
+        <div class="first">
+            <h3 id="player1Name" style="color: rgb(79, 3, 35); background-color: rgb(243, 176, 203);">Player 1</h3>
+            <br><br>
+            <span id="sp1" class="text-danger fs-5"></span><br>
+            <span id="sp2" class="text-danger fs-5"></span><br>
+            <span id="sp3" class="text-danger fs-5"></span><br>
+            <span id="sp" class="text-success fs-5"></span><br><br>
+            <p id="output"></p>
+            <br><br><br><br><br>
+            <div class="d-flex justify-content-center">
+                <button onclick="process1()" id="btn1" class="btn btn-success text-center">Start</button>
+            </div>
+        </div>
+        <div class="second">
+            <h3 id="player2Name" style="color: rgb(56, 4, 104); background-color: rgb(226, 197, 253);">Player 2</h3>
+            <br><br>
+            <span id="sp4" class="text-danger fs-5"></span><br>
+            <span id="sp5" class="text-danger fs-5"></span><br>
+            <span id="sp6" class="text-danger fs-5"></span><br>
+            <span id="sp7" class="text-success fs-5"></span><br><br>
+            <p id="output1"></p>
+            <br><br><br><br><br>
+            <div class="d-flex justify-content-center">
+                <button class="btn btn-success" id="btn2" onclick="process2()">Start</button>
+            </div>
+        </div>       
+    </div>
+    <br><br><br>
+    <h3 id="winner" class="text-center" style="background-color: black; color: rgb(219, 62, 15); font-family: 'Times New Roman', Times, serif;"></h3>
+    
+    <script>
+        const p1 = localStorage.getItem("Player1") || "Player 1";
+        const p2 = localStorage.getItem("Player2") || "Player 2";
+        document.getElementById("player1Name").innerText = p1;
+        document.getElementById("player2Name").innerText = p2;
+
+        let result1 = 0, result2 = 0;
+        let attempt1 = 0, attempt2 = 0;
+
+        function process1() {
+            if (attempt1 < 3) {
+                attempt1++;
+                const num = Math.floor(Math.random() * 10) + 1;
+                document.getElementById("sp" + attempt1).innerHTML = "Attempt " + attempt1 + " Score is: " + num;
+                result1 += num;
+                if (attempt1 === 3) {
+                    document.getElementById("sp").innerHTML = "Total Score is: " + result1;
+                    document.getElementById("output").innerHTML = "Your All Attempts are over. Now " + p2 + " starts!";
+                    document.getElementById("btn1").disabled = true;
+                }
+            }
+        }
+
+        function process2() {
+            if (attempt2 < 3) {
+                attempt2++;
+                const num = Math.floor(Math.random() * 10) + 1;
+                document.getElementById("sp" + (3 + attempt2)).innerHTML = "Attempt " + attempt2 + " Score is: " + num;
+                result2 += num;
+                if (attempt2 === 3) {
+                    document.getElementById("sp7").innerHTML = "Total Score is: " + result2;
+                    document.getElementById("output1").innerHTML = "Your All Attempts Are Over";
+                    document.getElementById("btn2").disabled = true;
+                    showWinner();
+                }
+            }
+        }
+
+        function showWinner() {
+            const winner = document.getElementById("winner");
+            if (result1 > result2) {
+                winner.innerText = "🎉 Congratulations " + p1 + "! You are the Winner!";
+            } else if (result2 > result1) {
+                winner.innerText = "🎉 Congratulations " + p2 + "! You are the Winner!";
+            } else {
+                winner.innerText = "🤝 It's a Tie!";
+            }
+        }
+    </script>
+</body>
+</html>
